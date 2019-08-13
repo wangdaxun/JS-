@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>放大镜</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css" media="screen">
+		*{
+			margin:0;
+			padding:0;
+			list-style: none;
+		}
+		html,
+		body{
+			width: 100%;
+			height: 100%;
+		}
+		ul{
+			position: relative;
+			top:360px;
+			margin:0 auto;
+			height: 50px;
+			width: 180px;
+		}
+		ul img{
+			vertical-align: top;
+		}
+		ul li{
+			float: left;
+			height: 50px;
+			width:50px;
+			padding-right: 10px;
+		}
+		.wrapper{
+			position: relative;
+			left:30px;
+			margin-top: 100px;
+			width:350px;
+			height: 410px;
+		}
+		.box{
+			position: relative;
+		}
+		.small{
+			position: absolute;
+			width:350px;
+			height: 350px;
+			left: 0;
+			top:0;
+			border: 1px solid #999;
+		}
+		.small span{
+			position: absolute;
+			width: 50px;
+			height: 50px;
+			background: rgba(255,255,0,0.5);
+			display:none;
+		}
+ 		.small span:hover{
+			cursor: move;
+		}
+		.big{
+			position: absolute;
+			height: 800px;
+			width: 800px;
+			left: 400px;
+			top:0;
+			display: none;
+			border: 1px solid #999;
+			overflow: hidden;
+
+		}
+	
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="box">
+			<div class="small">
+				<span></span>
+				<img src="images/pic001.jpg" alt="">
+			</div>
+			<div class="big">
+				<div class="bi">
+					<img src="images/pic01.jpg" alt="">
+				</div>
+			</div>
+		</div>
+		<ul>
+			<li><img src="images/pic0001.jpg" alt=""></li>
+			<li><img src="images/pic0002.jpg" alt=""></li>
+			<li><img src="images/pic0003.jpg" alt=""></li>
+		</ul>
+	</div>
+	<script>
+		//1.获取元素标签
+		var small=document.getElementsByClassName("small")[0];
+		var wra=document.getElementsByClassName("wrapper")[0];
+		var span=small.children[0];
+		var simg=small.children[1];
+		var list=document.getElementsByTagName("li");
+		var big=document.getElementsByClassName("big")[0];
+		var bimg=big.children[0].children[0];
+		var scale=2.285714;
+		small.onmouseenter=function(event){
+			//2.鼠标进入小的显示大的
+  			span.style.display = 'block';
+  			big.style.display='block';
+		}
+		small.onmousemove=function(event){
+			//3.移动鼠标span跟着移动
+  			var disX=event.pageX;
+  			var disY=event.pageY;
+  			span.style.left=disX-wra.offsetLeft-25+'px';
+  			span.style.top=disY-wra.offsetTop-25+'px';
+  			//4.判断超出盒子
+			if(parseInt(span.style.left)<0){
+			 	span.style.left='0px';
+			}else if(parseInt(span.style.left)>300){
+			 	span.style.left='300px';
+			}		
+			if(parseInt(span.style.top)<0){
+				span.style.top='0px';
+			}else if(parseInt(span.style.top)>300){
+				span.style.top='300px';
+			}
+			//5.让大盒子跟着span也动
+			bimg.style.marginLeft=-parseInt(span.style.left)*scale+'px';
+			bimg.style.marginTop=-parseInt(span.style.top)*scale+'px';
+
+		}
+		small.onmouseleave=function(event){
+			span.style.display = 'none';
+  			big.style.display='none';
+		}
+		for(var i=0;i<3;i++){
+			(function(i){
+				list[i].onclick=function(){
+					simg.src="images/pic00"+ (i+1) +".jpg";
+					bimg.src="images/pic0"+ (i+1) +".jpg"
+				}
+			}(i))
+		} 
+	</script>	
+</body>
+</html>

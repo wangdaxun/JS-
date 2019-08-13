@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>照片墙</title>
+	<link rel="stylesheet" href="">
+	<style>
+		*{
+			margin:0;
+			padding:0;
+			list-style: none;
+		}
+		section{
+			width: 100%;
+			height: 500px;
+			position: relative;
+			background: #999;
+		}
+		div{
+			width:100%;
+			position: relative;
+			height: 100%;
+		}
+		li{
+			height: 308px;
+			width: 451px;
+		}
+		img{
+			width: 451px;
+			height: 308px;
+			position: absolute;
+			left: 0;
+			top:0;
+		}
+		.current{
+			top:50% !important;
+			left: 50% !important;
+			transform: translate(-50%,-50%) rotate(0deg) scale(1.5,1.5) !important;
+			z-index:99;
+		}
+		img{
+			transition: all 2s;
+		}
+
+	</style>
+</head>
+<body>
+	<section>
+		<div>
+			<ul>
+				<li><img src="images/zpq1.jpg"></li>
+				<li><img src="images/zpq2.jpg"></li>
+				<li><img src="images/zpq3.jpg"></li>
+				<li><img src="images/zpq4.jpg"></li>
+				<li><img src="images/zpq5.jpg"></li>
+				<li><img src="images/zpq6.jpg"></li>
+				<li><img src="images/zpq7.jpg"></li>
+				<li><img src="images/zpq8.jpg"></li>
+			</ul>
+		</div>
+	</section>
+	<script type="text/javascript" src="source/underscore.js"></script>
+	<script type="text/javascript">
+		//1.获取元素标签
+		var img=document.getElementsByTagName("img");
+		//2.求出屏幕的宽度和高度
+		var scW=document.documentElement.clientWidth-451;
+		var scH=document.documentElement.clientHeight-308;
+		console.log(scH);
+		//3.遍历
+		for(var i=0;i<img.length;i++){
+			var li=img[i];
+			li.style.left=_.random(10,scW)+'px';
+			li.style.top=_.random(10,scH)+'px';
+			li.style.transform = "rotate("+ _.random(-20,20) +"deg)";
+			li.onclick=function(){	
+				for(var j=0;j<img.length;j++){
+					img[j].className="";
+				}
+				this.className="current";
+			}
+		}
+	</script>
+</body>
+</html>

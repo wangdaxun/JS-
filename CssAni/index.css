@@ -1,0 +1,154 @@
+html,
+body{
+	width:100%;
+	height: 100%;
+	background: #F26C6D;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.mask{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top:0;
+	background:#013F79; 
+	z-index: 99;
+	display: flex;
+	justify-content: center;
+	align-items: center; 
+	animation-fill-mode:forwards;
+	transition: 1s;
+	flex-direction: column;
+}
+.progressbar{
+	width:200px;
+	height: 10px;
+	border-radius: 4px;
+	background: #fff;
+	position: relative;
+	margin-left: 40px;
+	margin-top:40px;
+}
+.progress{
+	width: 0px;
+	height: 100%;
+	background: #E97B64;
+	border-radius: 4px;
+}
+.monster{
+	display: flex;
+	position: relative;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 110px;
+	height: 100px;
+	background: #FD7351;
+	margin-left: 50px;
+	animation: monsmove 1s infinite alternate;
+	border-radius: 20px;
+	box-shadow: 0px 10px 10px rgba(0,0,0,0.5); 
+}
+.monster .eye{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 30px;
+	height: 30px;
+	background: #fff; 
+	border-radius: 50%;
+}
+.monster .eye .eyeball{
+	background: #07417F;
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	animation: eyemove 1s infinite alternate;
+}
+.monster .mouth{
+	width: 30px;
+	height: 10px;
+	background: #fff;
+	border-radius: 10px;
+	margin-top: 15px;
+}
+.monster::before,
+.monster::after{
+	content:"";
+	display: block;
+	position: absolute;
+	width: 20px;
+	height: 7px;
+	left: 40px;
+	top:-7px;
+	background-color: #fff;
+	border-radius: 4px;
+}
+.monster::before{
+	transform: rotate(45deg);
+}
+.monster::after{
+	left:50px;
+	transform: rotate(-45deg);
+}
+
+.monster.blue{
+	background: #01407A;
+	margin-left: 30px;
+	animation: monsmove 1s infinite alternate;
+	animation-delay: 1s;
+}
+.monster.blue .eyeball{
+	background: #FB7250;
+}
+.monster.blue .mouth{
+	background: #FF724D;
+}
+.mask.complete{
+	opacity: 0;
+}
+.mask.complete .mon{
+	transform: scale(0.1,0.1) rotateZ(360deg);
+	transition: 0.5s;
+}
+.content{
+	color: #FFF9F7;
+	font-size: 1.4em;
+	font-weight: 700;
+}
+.content h4{
+	font-weight: 200;
+	font-size: 0.8em;
+	
+}
+@keyframes monsmove{
+	0%{
+		transform: translateY(0); 
+		box-shadow:0px 10px 20px rgba(0,0,0,0.2); 
+	}
+	100%{
+		transform: translateY(-50px);
+		box-shadow:0px 120px 10px rgba(0,0,0,0.1); 
+	}
+}
+@keyframes eyemove{
+	0%,
+	10%{
+		transform:translateX(-10px);
+	}
+	90%,
+	100%{
+		transform: translateX(10px);
+	}
+}
+/*@keyframes fadeaway{
+	0%{
+		opacity: 1;
+	}
+	100%{
+		opacity: 0;
+	}
+}*/
+

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="lunbo.css">
+	<script src="tools.js"></script>
+	<title>轮播图</title>
+</head>
+<body>
+	<div class="wrapper">
+		<ul class="list">
+			<li class="pic"><img src="images/11.jpg" alt></li>
+			<li class="pic"><img src="images/12.jpg" alt=""></li>
+			<li class="pic"><img src="images/13.jpg" alt=""></li>
+			<li class="pic"><img src="images/14.jpg" alt=""></li>
+			<li class="pic"><img src="images/11.jpg" alt=""></li>
+			<li class="pic"><img src="images/12.jpg" alt=""></li>
+		</ul>
+		<span class="circle"></span>
+		<span class="circle"></span>
+		<span class="circle"></span>
+		<span class="circle"></span>
+	</div>
+	<script>
+		var pic=document.getElementsByClassName("list")[0];
+		var wra=document.getElementsByClassName("wrapper")[0];
+		var sp=document.getElementsByTagName("span");
+		function Wheelplanting(){
+				var left=parseInt(getStyle(pic,"left"));
+				select(left);
+				if(left==-2000){
+					pic.style.left=-0+'px';
+				}
+				else{
+					pic.style.left=left-100+'px';
+				}
+
+		}
+		var timer=setInterval(Wheelplanting, 1000);
+		wra.onmouseout=function(){
+			timer=setInterval(Wheelplanting, 1000);
+		}
+		wra.onmouseover=function(){
+			clearInterval(timer);
+		}
+		function select(left){
+			var sp=document.getElementsByTagName("span");
+			function all(){
+				for(var i=0;i<sp.length;i++)
+					{
+					sp[i].classList.remove("active");
+				}
+			}
+			switch (parseInt(left)) {
+				case 0:
+					all();
+					sp[1].classList.add("active");
+					break;
+				case -500:
+					all();
+					sp[2].classList.add("active");
+					break;
+				case -1000:
+					all();
+					sp[3].classList.add("active");
+					break;
+				case -1500:
+					all();
+					sp[0].classList.add("active");
+					break;
+				default:
+					// statements_def
+					break;
+			}
+		}
+		(function(){
+			for(var i=1;i<sp.length;i++){
+			sp[i].style.left=parseInt(getStyle(sp[i-1],"left"))+100+'px';
+			}
+		}());
+	</script>
+</body>
+</html>

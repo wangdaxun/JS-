@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>进度条</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css">
+		*{
+			margin:0;
+			padding:0;
+		}
+		.content{
+			margin:100px auto;
+			width:800px;
+			height: 30px;
+			border-radius: 8px;
+			position: relative;
+		}
+		.progressbar{
+			position: relative;
+			background: #ccc;
+			width: 90%;
+			height: 100%;
+		}
+		.progress{
+			position: relative;
+			width: 0;
+			height: 100%;
+			background: #f40;
+		}
+		.block{
+			position: absolute;
+			top:-11px;
+			left: 0px;
+			width: 30px;
+			height: 50px;
+			background: #f40;
+			cursor: pointer;
+			border-radius: 7px;
+		}
+		.numb{
+			position: absolute;
+			right: 0;
+			top:0;
+			width: 10%;
+			height: 100%;
+			line-height: 30px;
+			text-align:center;
+		}
+	</style>	
+</head>
+<body>
+	<div class="content">
+		<div class="progressbar">
+			<div class="progress">
+				<div class="block"></div>
+			</div>
+		</div>
+		<div class=numb></div>
+	</div>
+	<script type="text/javascript">
+		//1.获取到该获取的元素
+		var blk=document.getElementsByClassName("block")[0];
+		var pro=document.getElementsByClassName("progressbar")[0];
+		var prog=document.getElementsByClassName("progress")[0];
+		var num=document.getElementsByClassName("numb")[0];
+		var con=document.getElementsByClassName("content")[0];
+		num.innerHTML="0%";
+		//2.绑定鼠标点击事件
+		document.body.onmousedown=function(){
+			//3.绑定鼠标在导航条中的事件
+			pro.onmousemove=function(event){
+				//3.1获取进度条该移动到哪
+				var mx=event.pageX-con.offsetLeft;
+				prog.style.width=mx+'px';
+				blk.style.left=mx-10+'px';
+				//3.2处理边界值
+				if(mx<=0){
+					prog.style.width=0;
+					blk.style.left=0;
+				}else if(prog.offsetWidth>=720){
+					//console.log(prog.offsetWidth);
+					prog.style.width=720+'px';
+					blk.style.left=720+'px';
+				}
+				//3.3改变百分比
+				num.innerHTML=Math.floor((prog.offsetWidth/pro.offsetWidth)*100)+"%";
+			}
+		}
+		//4.当鼠标抬起时取消鼠标绑定事件
+		document.onmouseup=function(){
+			console.log("tsm!!");
+			pro.onmousemove=null;
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>二级菜单</title>
+	<link rel="stylesheet" href="exe4.css">
+	<script src="tools.js"></script>
+</head>
+<body>
+	<ul class="nav">
+		<li class="FirLv">File
+		<div class="SeLv">
+			<ul>
+				<li class="Seli">New File
+					<div class="ThLv">
+						<ul>
+							<li>UTF-8</li>
+							<li>UTF-16</li>
+							<li>UTF-16-le</li>
+							<li>Western</li>
+						</ul>
+					</div>
+				</li>
+				<li class="Seli">Open File
+					<div class="ThLv">
+						<ul>
+							<li>this</li>
+							<li>that</li>
+							<li>am</li>
+							<li>are</li>
+						</ul>
+					</div>
+				</li>
+				<li class="Seli">Open Folder
+					<div class="ThLv">
+						<ul>
+							<li>Usds</li>
+							<li>Usdfg</li>
+							<li>dfgdfe</li>
+							<li>fghrn</li>
+						</ul>
+					</div>
+				</li>
+				<li class="Seli">Open Recent
+					<div class="ThLv">
+						<ul>
+							<li>Usdg</li>
+							<li>Udf6</li>
+							<li>Udf-16-le</li>
+							<li>Weasdsarn</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</div>
+		</li>
+		<li class="FirLv">Edit
+			<div class="SeLv">
+				<ul>
+				<li>New File</li>
+				<li>Open File</li>
+				<li>Open Folder</li>
+				<li>Open Recent</li>
+			</ul>
+			</div>
+		</li>
+		<li class="FirLv">Selection
+			<div class="SeLv">
+				<ul>
+				<li>New File</li>
+				<li>Open File</li>
+				<li>Open Folder</li>
+				<li>Open Recent</li>
+			</ul>
+			</div>
+		</li>
+		<li class="FirLv">Find
+			<div class="SeLv">
+				<ul>
+				<li>New File</li>
+				<li>Open File</li>
+				<li>Open Folder</li>
+				<li>Open Recent</li>
+			</ul>
+			</div>
+		</li>
+		<li class="FirLv">View
+			<div class="SeLv">
+				<ul>
+				<li>New File</li>
+				<li>Open File</li>
+				<li>Open Folder</li>
+				<li>Open Recent</li>
+			</ul>
+			</div>
+		</li>
+		<li class="FirLv">Goto
+			<div class="SeLv">
+				<ul>
+				<li>New File</li>
+				<li>Open File</li>
+				<li>Open Folder</li>
+				<li>Open Recent</li>
+			</ul>
+			</div>
+		</li>
+	</ul>
+	<div class="left">
+	</div>
+	<div class="right">
+		<div class="top">
+		</div>
+	</div>
+	<script>
+		var First=document.getElementsByClassName("FirLv");
+		var nav=document.getElementsByClassName("nav")[0];
+		var Second=document.getElementsByClassName("Seli");
+		var flags=true;
+		var click=0;
+		function disnone(nav){
+			for(var i=0;i<nav.length;i++){
+				nav[i].children[0].style.display = 'none';
+			}
+		}
+		function display(population,single){
+			disnone(population);
+			single.children[0].style.display="block";
+		}
+		function navDisplay(){
+			for(var i=0;i<First.length;i++){
+				First[i].onmouseover=function(){
+					disnone(First);
+					this.children[0].style.display="block";
+				}
+			}
+		}
+		function seDisplay(){
+			for(var i=0;i<Second.length;i++){
+				Second[i].onmouseover=function(){
+					disnone(Second);
+					this.children[0].style.display="block";
+				}
+			}
+		}
+		function moveout(target){
+			for(var i=0;i<target.length;i++){
+				target[i].onmouseout=function(){
+					disnone(target);
+				}
+			}
+		}
+		navDisplay();
+		seDisplay();
+		moveout(First);
+		moveout(Second);
+		(function(){
+			for(var i=1;i<nav.children.length;i++){
+				nav.children[i].children[0].style.left=parseInt(getStyle(nav.children[i-1].children[0],"left"))+100+'px';
+			}
+		}())
+		// nav.onclick=function(e){
+		// 	disnone(this);
+		// 	e.target.children[0].style.display = 'block';
+		// }
+		// First.onclick=function(e){
+		// 	disnone(this)
+		// 	e.target.children[0].style.display = 'none';
+		// }
+	</script>
+</body>
+</html>

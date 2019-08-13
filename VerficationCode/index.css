@@ -1,0 +1,94 @@
+*{
+	padding:0;
+	margin:0;
+}
+html,body{
+	width: 100%;
+	height: 100%;
+}
+.wrapper{
+	width:400px;
+	height: 350px;
+	border: 1px solid #bbb;
+	border-radius: 5px;
+	position: relative;
+	margin-left: 20px;
+	margin-top: 50px;
+
+}
+.inputBox{
+	position: relative;
+	padding:20px 0px 0px 10px;
+	width:100%;
+	height: 60px;
+}
+.inputBox input{
+	width: 300px;
+	height: 50px;
+	border-radius: 5px;
+	text-indent: 10px;
+	font-size: 18px;
+}
+.inputBox span{
+	display: inline-block;
+	position: relative;
+	width: 30px;
+	height: 30px;
+	opacity: 0.7;
+	left:10px;
+	top:10px;
+}
+.inputBox .smerror{
+	background: url(images/error.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+.inputBox .smright{
+	background: url(images/right.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+.error{
+	color:#E57A62;
+	font-size: 16px;
+	line-height: 30px;
+	display: none;
+	padding:10px 0 0 10px;
+}
+.canvasBox{
+	width: 100%;
+	height: 100px;
+	padding:10px 0 0 10px;
+	position: relative;
+}
+.myCanvas{
+	width: 300px;
+	height: 100%;
+	background: #ccc;
+	line-height: 100px;
+}
+.refresh{
+	display: inline-block;
+	position: relative;
+	width: 30px;
+	height: 30px;
+	background: url(images/refresh.jpg) no-repeat;
+	background-size: 100% 100%;
+	top:-34px;
+	left: 16px;
+}
+.submit{
+	margin:10px 0 0 10px;
+	position: relative;
+	width:100px;
+	height: 50px;
+	/*text-align: center;
+	line-height: 50px;*/
+}
+.btn{
+	width:100%;
+	height: 100%;
+	font-size: 19px;
+	background: #599501;
+	color:#fff;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}

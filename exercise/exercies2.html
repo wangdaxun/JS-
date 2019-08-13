@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>exercies2</title>
+	<link rel="stylesheet" type="text/css" href="exe2.css">
+	<script>
+		var Person={
+			name:"sss",
+			sex:"male",
+			wife:{
+				name:"sd"
+			},
+			card:['visa','id']
+		}
+		function deepClone(origin,target){
+			var str=Object.prototype.toString;
+			var target=target||{};
+			var arr="[object Array]";
+			for(prop in origin){
+				if(typeof(origin[prop])=='object'){
+					if(str.call(origin[prop])==arr){
+						target[prop]=[];
+					}
+					else{
+						target[prop]={};
+					}
+					deepClone(origin[prop],target[prop]);
+				}else{
+					target[prop]=origin[prop];
+				}
+			}
+			return target;
+
+		}
+		function Clon(origin,target){
+
+		}
+		var Clone={};
+		deepClone(Person,Clone);
+		var arr=[1,2,1,2,3,4,5,6];
+		arr.sort(function(a,b){
+			return Math.random()-0.5;
+		});
+		//数组去重：
+		Array.prototype.unique=function(){
+			var arr=[];
+			var temp={};
+			var len=this.length;
+			for(var i=0;i<len;i++){
+				if(!temp[this[i]]){
+					temp[this[i]]="abc";
+					arr.push(this[i]);
+				}
+			}
+			return arr;
+		}
+		//字符串去重：
+		String.prototype.unique=function(){
+			var temp={};
+			var str=new  String();
+			var len=this.length;
+			for(var i=0;i<len;i++){
+				if(!temp[this[i]]){
+					temp[this[i]]="abc";
+					str+=this[i];
+				}
+			}
+			return str;
+		}
+		//自定义typeof
+		//js所有类型：
+		//原始值：number,string,bool,null,undefined
+		//引用值：数组，对象，function
+		//对象又分为：number对象，bool对象，String对象
+		function mytypeof(target){
+			var obj={
+				"[object Array]":"object array",
+				"[object Boolean]":"object bool",
+				"[object Number]":"object Number",
+				"[object String]":"object String"
+			}
+			if(target==null){
+				return "null"
+			}else if(typeof(target)=="object"){
+				var str=Object.prototype.toString.call(target);
+				return obj[str];
+			}else{
+				return typeof(target);
+			}
+		}
+		function deepClone(Origin,Target){
+			var Target=Target||{};
+			var arr="[object array]";
+			var str=Object.prototype.toString;
+			for(var prop in Origin){
+				if(Origin[prop]!=null && typeof(Origin[prop])=="object"){
+					if(str.call(Origin[prop])==arr){
+						Target[prop]=[];
+					}else{
+						Target[prop]={};
+					}
+					deepClone(Origin[prop],Target[prop]);
+				}
+				else{
+					Target[prop]=Origin[prop];
+				}
+			}
+			return Target;
+		}
+		/*
+		js面向对象
+		自己的理解：
+			将一个东西封装成一个类似于java中的一个类，该类不在原型链上，单独存在，可以被别的js调用。易于维护，降低了程序之间的耦合性。
+			封装过程：
+			1.立即执行函数，在被调用就执行，所以这个类保存到了js中的整个winodw对象中
+			2.构造函数（大驼峰式命名)，真正起到构造作用的是return的这个类上的原型链上的init方法
+			3.对象的原型链
+			3.1在原型链上改变构造器，原来的构造器是继承于原型链上的object对象，所以改成自己，这样就能脱离于原型链之外。
+			3.2定义init方法，真正的初始化函数
+			3.3定义变量，函数方法
+			4.将自己的原型赋给init函数，使init函数的原型也是它自己，没有继承自原型链
+			5.在window中保存这个类（变量）
+		*/
+		(function(window){
+			function Hnn(){
+				return new Hnn.prototype.init();
+			}
+			Hnn.prototype = {
+				constructor:Hnn;
+				init:function(){
+
+				}
+			}
+			Hnn.prototype.init.prototype = Hnn.prototype;
+			window.Hnn = Hnn;
+		}(window));
+
+		(function(window){
+
+		}(window))
+	</script>
+</head>
+<body>
+	<ul class="navigation">
+		<li class="item"><a href="javascript:;">天猫</a></li>
+		<li class="item"><a href="javascript:;">聚划算</a></li>
+		<li class="item"><a href="javascript:;">天猫超市</a></li>
+	</ul>
+<div class="sss">中国财长：赤字率拟安排2.8%是积极的、稳妥的</div>
+</body>
+</html>

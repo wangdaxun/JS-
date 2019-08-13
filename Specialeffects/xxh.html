@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>星星海</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css" media="screen">
+		body{
+			background: #000;
+			padding: 0;
+			margin: 0;
+			height: 800px;
+		}
+		span{
+			background: url(images/star.png) no-repeat;
+			animation: shine 5s infinite;
+			position: absolute;
+			width: 30px;
+			height: 30px;
+			background-size: 100% 100%;		
+			transition: all 2s;
+		}
+		span:hover{
+			transform: scale(1.5,1.5) !important;
+			transition: : all 1s;
+		}
+		@keyframes shine{
+			0%{
+				opacity: 0;
+			}
+			100%{
+				opacity: 1;
+			}
+			
+		};
+	</style>
+</head>
+<body>
+	<script type="text/javascript" src="source/underscore.js"></script>
+	<script type="text/javascript">
+	var scL=document.documentElement.clientWidth;
+	var scH=document.documentElement.clientHeight;
+		for(var i=0;i<150;i++){
+			var star=document.createElement("span");
+			var x=scL*Math.random();
+			var y=scH*Math.random();
+			star.style.left=x+'px';
+			star.style.top=y+'px';
+			var scale=Math.random()*1.5;
+			star.style.transform = 'scale('+ scale +','+ scale+')';
+			var rate=Math.random()*1.5;
+			star.style.animationDelay = rate+'s'; 
+			document.body.appendChild(star);
+
+	}
+
+	</script>
+</body>
+</html>

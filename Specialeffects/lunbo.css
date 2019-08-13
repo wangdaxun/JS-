@@ -1,0 +1,47 @@
+*{
+	margin:0;
+	padding:0;
+}
+.circle{
+	display: inline-block;
+	position: absolute;
+	border: 1px solid #000;
+	border-radius: 50%;
+	height: 10px;
+	width: 10px;
+	z-index:1;
+	background-color: #fff;
+	left:100px;
+	top:240px;
+}
+.active{
+	 background-color: orange !important;
+}
+.wrapper{
+	position: relative;
+	height: 300px;
+	width: 500px;
+	margin:10% auto;
+	overflow: hidden;
+	border: 1px solid orange;
+}
+.list{
+	position: absolute;
+	float: left;
+	height: 300px;
+	width: 3000px;
+	list-style:none;
+	left:0px;
+	z-index: 0;
+			
+}
+.pic{
+	float: left;
+	height: 300px;
+	width: 500px;
+	left: 0px;
+}
+img{
+	height: 300px;
+	width: 500px;
+}

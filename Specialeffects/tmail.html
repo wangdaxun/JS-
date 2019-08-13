@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>天猫导航</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css" media="screen">
+		body{
+			margin: 0;
+			padding: 0;
+			background: pink;
+		}
+
+		.nav ul{
+			position: relative;
+			padding:0;
+		}
+		.nav li{
+			list-style: none;
+			float: left;
+			font-size: 0.9rem;
+			line-height: 70px;
+			text-align: center;
+			width: 88px;
+			cursor: pointer;
+			position: relative;
+		}
+		.nav{
+			width: 900px;
+			height: 63px;
+			background: url(images/doubleOne.png) no-repeat right center #fff;
+			border-radius: 5px;
+			margin:100px auto;
+			position: relative;
+		}
+		span{
+			background: url(images/tMall.png) no-repeat;
+			position: absolute;
+			width: 88px;
+			height: 63px;
+		}
+	</style>
+</head>
+<body>
+	<div class="nav">
+		<span></span>
+		<ul>
+			<li>双十一狂欢</li>
+			<li>服装会场</li>
+			<li>数码家电</li>
+			<li>家具建材</li>
+			<li>母婴童装</li>
+			<li>手机会场</li>
+			<li>美妆会场</li>
+			<li>进口会场</li>
+			<li>飞猪旅行</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		var tmail=document.getElementsByTagName("span")[0];
+		var list=document.getElementsByTagName("li");
+		console.log(tmail);
+		var beginX=0;
+		for(var i=0;i<list.length;i++){
+			var li=list[i];
+			li.onmouseover=function(){
+				end=this.offsetLeft;
+			}
+			li.onmousedown=function(){
+				//鼠标点击这个，这个就变成起始位置
+				beginX=this.offsetLeft;
+			}
+			li.onmouseout=function(){
+				end=beginX;
+			}
+		}
+		var begin=0;
+		var end=0;
+		setInterval(function(){
+				begin=begin+(end-begin)*0.1;
+				tmail.style.left=begin+'px';
+		},10);
+
+
+	</script>
+</body>
+</html>

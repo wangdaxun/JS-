@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<style type="text/css" media="screen">
+		*{
+			padding:0;
+			margin:0;
+		}
+		img{
+			width: 100%;
+			vertical-align: top;
+		}
+		.header{
+			position: relative;
+		}
+		header{
+			position: relative;
+		}
+		nav{
+			position: relative;
+			top: 0;
+			left: 0;
+		}
+	</style>
+</head>
+<body>
+	<header id="header" class="header">
+		<div class="header">
+		<img src="images/top.png" alt="">
+		</div>
+		<nav>
+			<img src="images/nav.png" alt="">
+		</nav>
+	</header>
+	<section class="body01">
+		<img src="images/body01.png" alt="">
+	</section>
+	<section class="body02">
+		<img src="images/body02.png" alt="">
+	</section>
+	<script type="text/javascript" src="myFunc.js"></script>
+	<script type="text/javascript">
+		var nav=document.getElementsByTagName("nav")[0];
+		var header=document.getElementsByClassName("header")[0];
+		window.onscroll=function(){
+		var scroll=window.scroll().top;
+		if(scroll>=78){
+			//console.log(header.offsetHeight);
+			nav.style.top=scroll-78+'px';
+			console.log(scroll);
+			flag=false;
+		}else{
+			nav.style.top=0;	
+		}
+		}
+	</script>
+</body>
+</html>

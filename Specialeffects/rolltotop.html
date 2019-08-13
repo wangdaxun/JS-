@@ -1,0 +1,101 @@
+
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>滚回顶部</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css" media="screen">
+		body{
+			margin: 0;
+			padding: 0;
+			}
+		.top{
+			position: fixed;
+			width: 10%;
+			height: 10%;
+			bottom: 10%;
+			right: 10%;
+			cursor:pointer;
+			display: block;
+		}
+		img{
+			width:100%;
+		}
+		p{
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="top">
+		<img src="images/top1.png" alt="">
+	</div>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<script type="text/javascript" src="myFunc.js"></script>
+</body>
+<script type="text/javascript">
+		var timer=null;
+		var begin=0;
+		var end=0;
+		var toop=document.getElementsByClassName("top")[0];
+		var top=document.getElementsByClassName("top")[0];
+		console.log(toop);
+		console.log(top);
+		window.onscroll=function(){
+			begin=scroll().top;
+			console.log(begin);
+			begin==0?hide(toop):show(toop);
+		}		
+		top.addEventListener("click", function(){
+			clearInterval(timer);
+			timer=setInterval(function(){
+				begin=begin+(end-begin)/20;
+				console.log(begin);
+				window.scrollTo(0,begin);
+				if(begin==end){
+					clearInterval(timer);
+				}
+			}, 20)
+		}, false);
+		function show(obj){
+			return obj.style.display='block';
+		}
+		function hide(obj){
+			return obj.style.display='none';
+		}
+	</script>
+</html>

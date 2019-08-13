@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>css3旋转</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css" media="screen">
+		section{
+			width:120px;
+			height: 163px;
+			margin:200px auto;
+			position: relative;
+		}
+		.box div{
+			border: 1px solid #999;
+			width: 100%;
+			height: 100%;
+			background: #fff url("images/pk.png") no-repeat -17px -17px;
+			transform-origin: left bottom;
+			position: absolute;
+		}
+		.box div{
+			transition: all 1s linear;
+			transform-origin: left bottom;
+			position: absolute;
+			width: 100%;
+			height: 100%;
+		}
+		.box:hover  .poke1{
+			transform: rotate(15deg);
+		}
+		.box:hover  .poke2{
+			transform: rotate(30deg);
+		}
+		.box:hover .poke3{
+			transform: rotate(45deg);
+		}
+		.box:hover .poke4{
+			transform: rotate(60deg);
+		}
+		.box:hover .poke5{
+			transform: rotate(75deg);
+		}
+		.box:hover .poke6{
+			transform: rotate(90deg);
+		}
+		.box:hover .poke7{
+			transform: rotate(105deg);
+		}
+		.box:hover .poke8{
+			transform: rotate(130deg);
+		}
+	</style>				
+</head>
+<body>
+	<section>
+		<div class="box">
+			<div class="poke1"></div>
+			<div class="poke2"></div>
+			<div class="poke3"></div>
+			<div class="poke4"></div>
+			<div class="poke5"></div>
+			<div class="poke6"></div>
+		</div>
+	</section>
+</body>
+</html>

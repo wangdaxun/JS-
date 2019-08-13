@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="tools.js"></script>
+	<style type="text/css" media="screen">
+		.wrapper{
+			position: relative;
+			display: none;
+			width:100px;
+ 			height: 100px;
+ 			border:1px solid orange;
+		}
+		.active{
+			display: block;
+		}
+		button{
+			position: relative;
+		}
+		.father{
+			position:relative;
+			width: 200px;
+			height: 200px;
+			background-color: red;
+		}
+		.fa{
+			position:relative;
+			width: 200px;
+			height: 200px;
+			background-color: red;
+		}
+
+		.fa::after{
+			content: "";
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			background-color: yellow;
+		}
+		.move{
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			background-color: orange;
+			left:0;
+			top:0;
+		}
+	</style>
+</head>
+<body>
+	<!-- <button>按钮1</button>
+	<button>按钮2</button>
+	<button>按钮3</button>
+	<div class="wrapper">韩小美</div>
+	<div class="wrapper">小美</div>
+	<div class="wrapper">美</div>
+
+	<div class="father">
+	</div>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+		<li>9</li>
+		<li>10</li>
+	</ul> -->
+	<div class="move">
+	</div>
+
+	 <input type="text"
+value="请输入用户名"  onfocus="if(this.value=='请输入用户名'){this.value=''}" onblur="if(this.value=''){this.value='请输入用户名'}" id="fname" />
+</body>
+<!-- <script>
+		var btn=document.getElementsByTagName('button');
+		var wra=document.getElementsByClassName('wrapper');
+		// var fat=document.getElementsByClassName('father')[0];
+		for(var i=0;i<btn.length;i++){
+			(function(n){
+				btn[n].onclick=function(){
+					for(var j=0;j<btn.length;j++){
+						wra[j].className="wrapper";
+					}
+					wra[n].className="wrapper active";
+				}
+			}(i))		
+		}
+		var div=document.createElement("div");
+		fat.appendChild(div);
+		div.style.width="100px";
+		div.style.height="100px";
+		div.style.background = 'blue';
+		div.style.position = 'absolute';
+		div.style.left="0";
+		div.style.top="0";
+		document.onkeydown=function(e){
+			//console.log(e);
+			//左：37
+			//上：38
+			//右：39
+			//下：40
+			// var obj={
+			// 	"37":'div.style.left=div.style.left'+5+'px,
+			// 	"38":"'div.style.top=div.style.top'+5+px",
+			// 	"39":"'div.style.right=div.style.right'+5+px",
+			// 	"40":"'div.style.bottom=div.style.bottom'+5+px"
+			// };
+			// var obj=new Obj();
+			if(e.which==37){
+				div.style.left = parseInt(div.style.left)-5+'px';
+			}
+			if(e.which==38){
+				div.style.top = parseInt(div.style.top)-5+'px';
+			}
+			if(e.which==39){
+				div.style.left = parseInt(div.style.left)+5+'px';
+			}
+			if(e.which==40){
+				div.style.top = parseInt(div.style.top)+5+'px';
+			}
+		}	
+	</script> -->
+	<!-- <script>
+		var fa=document.getElementsByClassName("father")[0];
+		fa.onclick=function(){
+			fa.className="fa";
+		}
+	</script> -->
+	<script>
+		// var ul=document.getElementsByTagName("ul")[0];
+		// ul.onclick=function(e){
+		// 	console.log(e.target.innerText);
+		// }
+		var move=document.getElementsByClassName("move")[0];
+		function drag(elem){
+			var disX,
+				disY;
+			elem.onmousedown=function(e){
+				disX=e.pageX-parseInt(getStyle(elem,"left"));
+				disY=e.pageY-parseInt(getStyle(elem,"top"));
+				document.onmousemove=function(e){
+					elem.style.left=e.pageX-disX+"px";
+					elem.style.top=e.pageY-disY+"px";
+			
+				}
+				document.onmouseup=function(){
+					document.onmousemove=null;
+				}
+			}
+		}
+		drag(move);
+	</script>
+</html>

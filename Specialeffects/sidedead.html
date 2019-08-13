@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<style type="text/css" media="screen">
+		p{
+			text-align: center;
+		}
+		.left{
+			position: absolute;
+			top:  40%;
+			left: 0px;
+			width: 116px;
+		}
+		.right{
+			position: absolute;
+			top:  40%;
+			right: 0px;
+			width: 116px;
+		}
+		img{
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div class="left">
+		<img src="images/float.jpg">
+	</div>
+	<div class="right">
+		<img src="images/float.jpg" alt="">
+	</div>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<p>Ressell Westbrook</p>
+	<script type="text/javascript" src="myFunc.js"></script>
+	<script type="text/javascript">
+		var left=document.getElementsByClassName("left")[0];
+		var right=document.getElementsByClassName("right")[0];
+		var begin=0;
+		var init=left.offsetTop;
+		var timer=null;
+		var end=0;
+		window.onscroll=function(){
+			end=window.scroll().top+init;
+			console.log(end);
+			timer=setInterval(function(){
+				begin=begin+(end-begin)*0.5;
+				left.style.top=begin+'px';
+				right.style.top=begin+'px';
+				if(begin==end){
+					clearInterval(timer);
+				}
+			},20);
+		}
+	</script>
+</body>
+</html>

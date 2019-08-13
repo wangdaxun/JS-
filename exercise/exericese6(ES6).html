@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ES6新增方法</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<script type="text/javascript">
+		//filter:
+		var products = [
+			{name:"apple",type:"fruit",quantity:0,price:1},
+			{name:"banana",type:"fruit",quantity:1,price:2},
+			{name:"tomato",type:"vegeta",quantity:1,price:2},
+			{name:"bocai",type:"vegeta",quantity:2,price:3}
+		]
+		//找出类型是vegeta,且质量为2的产品
+		products = products.filter(function(product) {
+			return product.type === "vegeta" && product.quantity === 2;
+		});
+		console.log(products);
+
+		//forEach和map的区别：forEach的返回值是undefined,可以修改原数组。
+		//而map返回callback函数中的参数，将这个值赋给新变量中，返回值也是这个参数
+
+		//every||some
+		function Filed(value){
+			this.value = value;
+		}
+		Filed.prototype.valible = function(){
+			return this.value.length > 0;
+		}
+		var username = new Filed("Hnn");
+		var password = new Filed("");
+		var sex = new Filed("female");
+		var fileds = [username,password,sex];
+		var formIsValid = fileds.every(function(filed){
+			return filed.valible();
+		});
+		console.log(formIsValid);
+
+		//reduce
+		//累加：
+		var arrs = [10,20,30];
+		var sum = arrs.reduce(function(sum,arr){
+			return sum + arr;
+		}, 0);
+		console.log(sum);
+
+		//判断字符串中括号是否对称
+		function balance(string){
+			return !string.split("").reduce(function(previous,str){
+				if(previous < 0){
+					return previous;
+				}
+				if(str == "("){
+					previous++;
+				}
+				if(str == ")"){
+					previous--;
+				}
+				return previous;
+			},0);
+		}
+		console.log(balance("()()()()ssdds()()"));
+
+		//函数参数默认值
+		//作用：可以给函数的参数添加一个默认值
+		function makeAjaxRequest(url,method = "GET"){
+			return method;
+		}
+		console.log(makeAjaxRequest("www.taobao.com"));
+		function User(id){
+			this.id = id;
+		}
+		function randomId(){
+			return Math.random() * 99999;
+		}
+		function createAdminUser(user = new User(randomId())){
+			user.admin = true;
+			return user;
+		}
+		console.log(createAdminUser());
+
+		//展开运算符  spread operator
+		//作用：更快，更便捷的操作数组
+		function addNumbers(...numbers){
+			return numbers.reduce((sum,number)=>{
+				return sum + number;
+			},0);
+		}
+		console.log(addNumbers(1,2,3,4,5));
+		function validateShoppingList(...items){
+			if(items.indexOf("milk") < 0){
+				return ['milk',...items];
+			}
+		}
+		console.log(validateShoppingList("tea","coffee"));
+
+		//解构（对象）
+		//更快，更便捷
+		const person = {
+			name : "韩小美",
+			se : "女",
+			hobby : "唱，跳，rap，篮球"
+		}
+		const {name,se,hobby} = person;
+		console.log(name,se,hobby);
+
+		let saveFile = {
+			na : "girl",
+			extension : 'jpg',
+			size: 1040
+		}
+		const fileSammary=({na,extension,size})=>{
+			return `${na}.${extension}的总大小是${size}`;
+		}
+
+		console.log(fileSammary(saveFile));
+
+
+		//解构（数组-对象）
+		//数组：
+		const Nums = [1,2,3,2,3];
+		const [num1,num2,num3] = Nums;
+		const [num4,...num5] = Nums;
+		console.log(num1,num2,num3);
+		console.log(num4,num5);
+		//数组对象：
+		const people  = [
+			{name:"Leonard" , age:27},
+			{name:"westbrook", age:26},
+			{name:"George", age:27}
+		];
+		const [{age}] = people;
+		console.log(age);
+		const ages = people.map(({age})=>{
+			return age;
+		});
+		console.log(ages);
+		//应用：将数组中的数组该为对象
+		const points = [
+			[1,1],
+			[2,2],
+			[3,3]
+		];
+		//期望：
+		// [
+		// 	{x:1,y:1},
+		// 	{x:2,y:2},
+		// 	{x:3,y:3}
+		// ];
+		var obpoints = points.map(([x,y])=>{
+			return {x,y};
+		});
+		console.log(obpoints);
+
+		//面向对象（class)
+		class Car{
+			 constructor({title}){//构造函数
+			 	this.title = title;
+			 }
+			 drive(){
+				console.log(this.title+"呜呜呜");
+			}
+		}
+		let car = new Car({title:"Benz"});
+		car.drive();
+
+		class Factory extends Car{
+			constructor(options){
+				super(options);
+				this.color = options.color;
+			};
+			export(){
+				console.log("发明");
+			}
+		}
+		let BMW = new Factory(
+			{color:"blue",title:"BMW"}
+			);
+		BMW.export();
+		BMW.drive();
+
+		//generator生成器
+		//作用：可以返回多个值的函数
+		//例子：斐波那契数列
+		function* fib(max){
+			var a = 0, b = 1, n = 0;
+			while(n < max){
+				yield a;
+				[a,b] = [b, a+b];
+				n++;
+			}
+			return;
+		}
+		for(var x of fib(10)){
+			console.log(x);
+		}
+		//id自增
+		function* createIds(){
+			let index = 1;
+			while(true){
+				yield index++;
+			}
+		}
+		const gen = createIds();
+		console.log(gen.next().value);
+		console.log(gen.next().value);
+		console.log(gen.next().value);	
+
+		//数据结构：map
+		//键值对：与对象不同的是键和值可以是任何类型
+		const map1 = new Map();
+		const key1  = 'some string',
+			  key2 = {},
+			  key3 = function(){};
+		map1.set(key1,'韩小美');
+		map1.set(key2,'鞠卫南');
+		map1.set(key3,'张奇');
+		//console.log(map1.get(key1),map1.get(key2),map1.get(key3));
+		for (let [key,value] of map1){
+			console.log(key,value);
+		}
+		//only value
+		for (let key of map1.values()){
+			console.log(key);
+		}
+		//foreach:
+		map1.forEach((value,key)=>{
+			console.log(`${key} = ${value}`);
+		});
+
+		//数据结构：set
+		//集合： 可以存储任何数据类型，并且是唯一的（不重复的值）
+		let set = new Set();
+		set.add(100);
+		set.add("韩小美");
+		console.log(set.values());
+		set.forEach((item)=>{
+			console.log(item);
+		});
+
+		//构造函数：Promise
+		//一个非常牛逼闪电的东西
+		let promise = new Promise((resolve,reject) => {
+			setTimeout(() => {
+				resolve();
+				//reject();
+			},3000)
+		});
+		promise
+			.then(() => console.log("成功,没有问题"))
+			.then(() => console.log("可以无限调用"))
+			.catch(() => console.log("出现重大错误"));
+		console.log(promise);
+
+		//new http: fetch
+		//一个基于promise的请求方法，更简单，更便捷
+		let url = "https://www.easy-mock.com/mock/5cc165aa320ddb427c904316/movie/actor#!method=gethttps://www.easy-mock.com/mock/5cc165aa320ddb427c904316/movie/actor#!method=get";
+		fetch(url)
+			.then(response => response.json())
+			.then(data => console.log(data))
+			.catch(err => console.log(err));
+
+		//async & await(ES7的内容)
+		async function request(){
+			const response= await fetch("https://www.easy-mock.com/mock/5cc165aa320ddb427c904316/movie/comment#!method=get");
+			const data = await response.json();
+			return data;
+		}
+ 
+	</script>
+</body>
+</html>

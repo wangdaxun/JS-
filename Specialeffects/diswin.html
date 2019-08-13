@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>橱窗效果</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css" media="screen">
+		*{
+			margin:0;
+			padding:0;
+			list-style: none;
+		}
+		.wrapper{
+			position: relative;
+			width: 800px;
+			height: 325px;
+			margin:100px auto;
+			overflow: hidden;
+			border: 4px solid #ccc;
+			border-bottom: 0px;
+		}
+		.list{
+			position: absolute;
+			height: 300px;
+			width: 1248px;
+			display: flex;
+	
+			align-items: center;
+		}
+		.list li{
+
+			float: left;
+		}
+		.nav{
+			position: relative;
+			width: 100%;
+			height: 25px;
+			background: #ccc;
+			top:300px;
+		}
+		.navbar{
+			position: absolute;
+			left: 0;
+			top:0;
+			width: 200px;
+			height: 100%;
+			border-radius: 20px;
+			background: #f40;
+			cursor: pointer;
+		}
+		img{
+			height: 150px;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="list">
+			<ul>
+			</ul>			
+		</div>
+		<div class="nav">
+			<div class="navbar"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		//1.获取对象
+		var list=document.getElementsByClassName("list")[0].children[0];
+		var lis=document.getElementsByClassName("list")[0];
+		var navbar=document.getElementsByClassName("navbar")[0];
+		var wra=document.getElementsByClassName("wrapper")[0];
+		var distance=(wra.offsetWidth/lis.offsetWidth)*wra.offsetWidth;
+		navbar.style.width=distance+"px";
+		//2.动态加载商品
+		(function(){
+			for(var i=0;i<8;i++){
+				var li=document.createElement("li");
+				var img=document.createElement("img");
+				list.appendChild(li).appendChild(img);
+				img.src="images/img"+(i+1)+".jpg";
+			}
+		}())
+
+		//3.绑定鼠标点击事件
+		navbar.onmousedown=function(){
+			navbar.onmousemove=function(event){
+				//3.1求出滚动条走的距离
+				var left=event.pageX-list.offsetLeft-distance;
+				//3.2处理边界值
+				if(left<=0){
+					left=0;
+				}else if(left>=wra.offsetWidth-distance){
+					left=wra.offsetWidth-distance;
+				}
+				navbar.style.left=left+'px';
+				lis.style.left=-(lis.offsetWidth-wra.offsetWidth)/(wra.offsetWidth-navbar.offsetWidth)*left+'px';
+				console.log(lis.style.left);
+			}
+		}
+		document.onmouseup=function(){
+			navbar.onmousemove=null;
+		}
+	</script>
+</body>
+</html>
